@@ -1,0 +1,67 @@
+buildscript {
+    ext {
+        springBootVersion = '3.2.1'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE")
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group 'org.osh'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+    compileJava.options.encoding = 'UTF-8'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly('org.projectlombok:lombok')
+
+        annotationProcessor('org.projectlombok:lombok')
+        annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.0')
+        testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.7.0')
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+project(':core-module') {
+    bootJar.enabled = false
+    jar.enabled = true
+
+    dependencies {
+
+    }
+}
+
+project(':web-module') {
+    dependencies {
+        compileOnly(project(':core-module'))
+        implementation('org.springframework.boot:spring-boot-starter-web')
+    }
+}
+
+project(':admin-module') {
+    dependencies {
+        compileOnly(project(':core-module'))
+        implementation('org.springframework.boot:spring-boot-starter-web')
+    }
+}
