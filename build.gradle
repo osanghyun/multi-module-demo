@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '3.2.1'
+        springBootVersion = '3.2.2'
     }
     repositories {
         mavenCentral()
@@ -44,24 +44,19 @@ subprojects {
 }
 
 project(':core-module') {
-    bootJar.enabled = false
-    jar.enabled = true
-
     dependencies {
-
+        implementation('org.springframework.boot:spring-boot-starter-web')
     }
 }
 
-project(':web-module') {
+project(':bff-module') {
     dependencies {
-        compileOnly(project(':core-module'))
         implementation('org.springframework.boot:spring-boot-starter-web')
     }
 }
 
 project(':admin-module') {
     dependencies {
-        compileOnly(project(':core-module'))
         implementation('org.springframework.boot:spring-boot-starter-web')
     }
 }

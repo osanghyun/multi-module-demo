@@ -1,5 +1,5 @@
 rootProject.name = 'multi-module-demo'
 include 'core-module'
-include 'web-module'
+include 'bff-module'
 include 'admin-module'
 
