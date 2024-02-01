@@ -5,3 +5,9 @@ management:
   tracing:
     sampling:
       probability: 1.0
+  observations:
+    key-values:
+      host: "bff-module"
+      instance: "bff-pod"
+      region: "ap-northeast-2"
+      stack: "dev"
