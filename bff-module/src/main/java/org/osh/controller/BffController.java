@@ -3,6 +3,8 @@ package org.osh.controller;
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
@@ -56,6 +58,77 @@ public class BffController {
         log.info("resttemplate() called");
 
         return restTemplate.getForObject("http://localhost:8082/company", String.class);
+    }
+
+    @GetMapping("/200")
+    public String get200() {
+
+        log.info("200() called");
+
+        return restClient.get()
+                .uri("http://localhost:8082/200")
+                .retrieve()
+                .body(String.class);
+    }
+
+    @GetMapping("/400")
+    public String get400() {
+
+        log.info("400() called");
+
+        return restClient.get()
+                .uri("http://localhost:8082/400")
+                .retrieve()
+                .body(String.class);
+    }
+
+    @GetMapping("/404")
+    public String get404() {
+
+        log.info("404() called");
+
+        return restClient.get()
+                .uri("http://localhost:8082/404")
+                .retrieve()
+                .body(String.class);
+    }
+
+    @GetMapping("/500")
+    public String get500() {
+
+        log.info("500() called");
+
+        return restClient.get()
+                .uri("http://localhost:8082/500")
+                .retrieve()
+                .body(String.class);
+    }
+
+    @GetMapping("/db-error")
+    public String getDBError() {
+
+        log.info("getDBError() called");
+
+        return restClient.get()
+                .uri("http://localhost:8082/db-error")
+                .retrieve()
+                .body(String.class);
+    }
+
+    @GetMapping("/catch-error")
+    public String catchError() {
+        log.info("catchError() called");
+
+        try {
+            return restClient.get()
+                    .uri("http://localhost:8082/400")
+                    .retrieve()
+                    .body(String.class);
+        }
+        catch (RuntimeException e) {
+            return "catched";
+        }
+
     }
 
 }
