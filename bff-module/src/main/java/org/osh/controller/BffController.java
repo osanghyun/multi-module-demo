@@ -32,7 +32,7 @@ public class BffController {
         log.info("restclient() called");
 
         return restClient.get()
-                .uri("http://localhost:8082/hello")
+                .uri("http://localhost:8082/company")
                 .retrieve()
                 .body(String.class);
     }
@@ -44,7 +44,7 @@ public class BffController {
         log.info("webclient() called");
 
         return webClient.get()
-                .uri("http://localhost:8082/hello")
+                .uri("http://localhost:8082/company")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
@@ -55,7 +55,7 @@ public class BffController {
 
         log.info("resttemplate() called");
 
-        return restTemplate.getForObject("http://localhost:8082/hello", String.class);
+        return restTemplate.getForObject("http://localhost:8082/company", String.class);
     }
 
 }

@@ -16,12 +16,13 @@ public class CommonConfig {
 
     @Bean
     public OpenTelemetry openTelemetry() {
-        OtlpGrpcSpanExporter spanExporter = OtlpGrpcSpanExporter.builder().build();
 
         Resource resource = Resource.getDefault()
                 .merge(Resource.create(Attributes.builder()
                         .put(ResourceAttributes.SERVICE_NAME, "core-service")
                         .build()));
+
+        OtlpGrpcSpanExporter spanExporter = OtlpGrpcSpanExporter.builder().build();
 
         SdkTracerProvider sdkTracerProvider = SdkTracerProvider.builder()
                 .setResource(resource)
