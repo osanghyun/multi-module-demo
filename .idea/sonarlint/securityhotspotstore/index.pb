@@ -1,5 +1,12 @@
 
 H
 core-module/build.gradle,7/d/7d86f531ae23731f0e021bf26e30e7c7e7162692
-d
-4core-module/src/main/java/org/osh/entity/Member.java,1/2/12b324359fb000bec37b7edbf547d0bf4117ee80
+?
+settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
+n
+>bff-module/src/main/java/org/osh/controller/BffController.java,2/7/27c1b29e97ff23525cab257ce149266ff2c4d123
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+o
+?core-module/src/main/java/org/osh/cotroller/CoreController.java,5/4/5480391d44416b4f15fbc8496317f5fba56ece36

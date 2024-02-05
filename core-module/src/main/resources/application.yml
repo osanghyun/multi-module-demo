@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: core-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: postgres
+    password: new1234!
+    driverClassName: org.postgresql.Driver
 
 management:
   tracing:
