@@ -14,3 +14,7 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+api:
+  tracing:
+    grpc-collector: http://localhost:4317

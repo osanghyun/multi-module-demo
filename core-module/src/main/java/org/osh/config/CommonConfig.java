@@ -8,11 +8,15 @@ import io.opentelemetry.sdk.resources.Resource;
 import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.export.BatchSpanProcessor;
 import io.opentelemetry.semconv.ResourceAttributes;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
 public class CommonConfig {
+
+    private final ApiProperties apiProperties;
 
     @Bean
     public OpenTelemetry openTelemetry() {
@@ -22,7 +26,9 @@ public class CommonConfig {
                         .put(ResourceAttributes.SERVICE_NAME, "core-service")
                         .build()));
 
-        OtlpGrpcSpanExporter spanExporter = OtlpGrpcSpanExporter.builder().build();
+        OtlpGrpcSpanExporter spanExporter = OtlpGrpcSpanExporter.builder()
+                .setEndpoint(apiProperties.tracing().grpcCollector())
+                .build();
 
         SdkTracerProvider sdkTracerProvider = SdkTracerProvider.builder()
                 .setResource(resource)
