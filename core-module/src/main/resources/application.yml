@@ -11,6 +11,9 @@ spring:
     driverClassName: org.postgresql.Driver
 
 management:
+  endpoint:
+    health:
+      enabled: true
   tracing:
     sampling:
       probability: 1.0
