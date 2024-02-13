@@ -15,6 +15,11 @@ management:
     sampling:
       probability: 1.0
 
+logging:
+  pattern:
+    correlation: "[${spring.application.name:},%X{traceId:-},%X{spanId:-}] "
+  include-application-name: false
+
 api:
   tracing:
     grpc-collector: http://localhost:4317
