@@ -3,6 +3,7 @@ package org.osh.controller;
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.osh.utils.WebClientUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -129,6 +130,11 @@ public class BffController {
             return "catched";
         }
 
+    }
+
+    @GetMapping("/util-test")
+    public String utilTest() {
+        return WebClientUtil.test();
     }
 
 }
