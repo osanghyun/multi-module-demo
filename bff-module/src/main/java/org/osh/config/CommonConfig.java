@@ -22,7 +22,7 @@ import org.springframework.web.reactive.function.client.DefaultClientRequestObse
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class CommonConfig {
+public class                    CommonConfig {
     @Bean
     public RestClient restClient(RestClient.Builder builder) {
 
@@ -34,26 +34,10 @@ public class CommonConfig {
         return builder.build();
     }
 
-    @Bean
-    public WebClient webClient(WebClient.Builder builder) {
-        return builder.build();
-    }
-
-    @Bean
-    public WebClient.Builder webClientBuilder(ObjectProvider<WebClientCustomizer> customizerProvider) {
-        WebClient.Builder builder = WebClient.builder();
-        customizerProvider.orderedStream().forEach((customizer) -> customizer.customize(builder));
-        return builder;
-    }
-
-    @Bean
-    ObservationWebClientCustomizer observationWebClientCustomizer1(ObjectProvider<ClientRequestObservationConvention> customConvention) {
-        String name = "http.client.requests";
-        System.out.println("Customizer");
-        ClientRequestObservationConvention observationConvention = customConvention
-                .getIfAvailable(() -> new DefaultClientRequestObservationConvention(name));
-        return new ObservationWebClientCustomizer(ObservationRegistry.create(), observationConvention);
-    }
+//    @Bean
+//    public WebClient webClient(WebClient.Builder builder) {
+//        return builder.build();
+//    }
 
     @Bean
     public OpenTelemetry openTelemetry() {
@@ -73,4 +57,21 @@ public class CommonConfig {
                 .setTracerProvider(sdkTracerProvider)
                 .buildAndRegisterGlobal();
     }
+
+//
+//    @Bean
+//    public WebClient.Builder webClientBuilder(ObjectProvider<WebClientCustomizer> customizerProvider) {
+//        WebClient.Builder builder = WebClient.builder();
+//        customizerProvider.orderedStream().forEach((customizer) -> customizer.customize(builder));
+//        return builder;
+//    }
+//
+//    @Bean
+//    ObservationWebClientCustomizer observationWebClientCustomizer1(ObjectProvider<ClientRequestObservationConvention> customConvention) {
+//        String name = "http.client.requests";
+//        System.out.println("Customizer");
+//        ClientRequestObservationConvention observationConvention = customConvention
+//                .getIfAvailable(() -> new DefaultClientRequestObservationConvention(name));
+//        return new ObservationWebClientCustomizer(ObservationRegistry.create(), observationConvention);
+//    }
 }

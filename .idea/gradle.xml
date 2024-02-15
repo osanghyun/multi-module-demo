@@ -9,9 +9,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/admin-module" />
             <option value="$PROJECT_DIR$/bff-module" />
             <option value="$PROJECT_DIR$/core-module" />
+            <option value="$PROJECT_DIR$/library-module" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -137,4 +137,9 @@ public class BffController {
         return WebClientUtil.test();
     }
 
+    @GetMapping("/util-test2")
+    public String utilTest2() {
+        return org.osh.WebClientUtil.get();
+    }
+
 }

@@ -58,6 +58,7 @@ project(':core-module') {
 
 project(':bff-module') {
     dependencies {
+        implementation project(':library-module')
         implementation('org.springframework.boot:spring-boot-starter-web')
         implementation('org.springframework.boot:spring-boot-starter-webflux')
         implementation('org.springframework.boot:spring-boot-starter-actuator')
@@ -66,8 +67,9 @@ project(':bff-module') {
     }
 }
 
-project(':admin-module') {
+project(':library-module') {
     dependencies {
-        implementation('org.springframework.boot:spring-boot-starter-web')
+        implementation ('org.springframework.boot:spring-boot-starter-webflux')
+        implementation('org.springframework.boot:spring-boot-starter-actuator')
     }
 }
